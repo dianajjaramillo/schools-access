@@ -6,10 +6,7 @@
 This repository accompanies the following publication and dataset release.
 
 **Paper**  
-Jaramillo, D., & Hall, J. (2026, in production).  
-*Mapping School Accessibility in Africa: High-Resolution Spatial Analysis Uncovers Inequalities in Education Access.*  
-Sustainable Development.  
-https://doi.org/10.1002/sd.70920
+Jaramillo-Araujo, D., & Hall, J. W. (2026). *Mapping School Accessibility in Africa: High-Resolution Spatial Analysis Uncovers Inequalities in Education Access.* Sustainable Development. https://doi.org/10.1002/sd.70920 *(in production)*
 
 **Data**  
 The processed travel-time rasters generated in this study are archived on Zenodo:  
