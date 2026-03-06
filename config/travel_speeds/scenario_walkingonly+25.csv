@@ -1,0 +1,56 @@
+﻿class,label,speed,mode
+0,No data,0,WALKING
+10,Rainfed cropland,3.125,WALKING
+11,Herbaceous cover,3.125,WALKING
+12,Tree or shrub cover (Orchard),3.125,WALKING
+20,Irrigated cropland,3.125,WALKING
+30,"Mosaic cropland (>50%) / natural vegetation (tree, shrub, herbaceous cover) (<50%)",4.05,WALKING
+40,"Mosaic natural vegetation (tree, shrub, herbaceous cover) (>50%) / cropland (<50%)",4.05,WALKING
+50,Evergreen broadleaved forest,2.025,WALKING
+60,Deciduous broadleaved forest,5,WALKING
+61,Open deciduous broadleaved forest (0.15<fc<0.4),5,WALKING
+62,Closed deciduous broadleaved forest (fc>0.4),5,WALKING
+70,Evergreen needle-leaved forest,4.05,WALKING
+71,Open evergreen needle-leaved forest (0.15< fc <0.4),4.05,WALKING
+72,Closed evergreen needle-leaved forest (fc >0.4),4.05,WALKING
+80,Deciduous needle-leaved forest,4.05,WALKING
+81,Open deciduous needle-leaved forest (0.15< fc <0.4),4.05,WALKING
+82,Closed deciduous needle-leaved forest (fc >0.4),4.05,WALKING
+90,Mixed leaf forest (broadleaved and needle-leaved),4.05,WALKING
+100,Mosaic tree and shrub (>50%) / herbaceous cover (<50%),4.05,WALKING
+110,Mosaic herbaceous cover (>50%) / tree and shrub (<50%),6.075,WALKING
+120,Shrubland,4.5,WALKING
+121,Evergreen shrubland,4.5,WALKING
+122,Deciduous shrubland,4.5,WALKING
+130,Grassland,6.075,WALKING
+140,Lichens and mosses,3.75,WALKING
+150,Sparse vegetation (fc<0.15),3.75,WALKING
+151,Sparse tree (fc<0.15),3.75,WALKING
+152,Sparse shrubland (fc<0.15),3.75,WALKING
+153,Sparse herbaceous (fc<0.15),3.75,WALKING
+160,"Tree cover, flooded, fresh or brackish water",4.05,WALKING
+170,"Tree cover, flooded, saline water",4.05,WALKING
+180,Wetlands,2.5,WALKING
+190,Impervious,6.25,WALKING
+200,Bare areas,3.75,WALKING
+201,Consolidated bare areas,3.75,WALKING
+202,Unconsolidated bare areas,3.75,WALKING
+210,Water body,1.25,WALKING
+220,Permanent ice and snow,2.025,WALKING
+250,Filled value,0,WALKING
+1001,motorway,5,WALKING
+1002,motorway_link,5,WALKING
+2001,trunk,5,WALKING
+2002,trunk_link,5,WALKING
+3001,primary,5,WALKING
+3002,primary_link,5,WALKING
+4001,secondary,5,WALKING
+4002,secondary_link,5,WALKING
+5001,tertiary,5,WALKING
+5002,tertiary_link,5,WALKING
+6001,unclassified,5,WALKING
+6002,residential,5,WALKING
+6003,service,5,WALKING
+6004,track,5,WALKING
+6005,footway,5,WALKING
+6006,path,5,WALKING

@@ -1,0 +1,18 @@
+[project]
+name = "schools"
+version = "0.0.1"
+authors = [
+    { name = "Diana Jaramillo", email = "diana.jaramillo@ouce.ox.ac.uk" }
+]
+description = "Helper package for PhD workflow"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/dianajjaramillo/schools"
+"Bug Tracker" = "https://github.com/dianajjaramillo/schools/issues"

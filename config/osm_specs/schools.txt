@@ -1,0 +1,3 @@
+# See https://wiki.openstreetmap.org/wiki/Tag:amenity%3Dschool
+n/amenity=school
+a/amenity=school

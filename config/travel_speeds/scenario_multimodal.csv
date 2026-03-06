@@ -1,0 +1,56 @@
+﻿class,label,speed,mode
+0,No data,0,WALKING
+10,Rainfed cropland,2.5,WALKING
+11,Herbaceous cover,2.5,WALKING
+12,Tree or shrub cover (Orchard),2.5,WALKING
+20,Irrigated cropland,2.5,WALKING
+30,"Mosaic cropland (>50%) / natural vegetation (tree, shrub, herbaceous cover) (<50%)",3.24,WALKING
+40,"Mosaic natural vegetation (tree, shrub, herbaceous cover) (>50%) / cropland (<50%)",3.24,WALKING
+50,Evergreen broadleaved forest,1.62,WALKING
+60,Deciduous broadleaved forest,4,WALKING
+61,Open deciduous broadleaved forest (0.15<fc<0.4),4,WALKING
+62,Closed deciduous broadleaved forest (fc>0.4),4,WALKING
+70,Evergreen needle-leaved forest,3.24,WALKING
+71,Open evergreen needle-leaved forest (0.15< fc <0.4),3.24,WALKING
+72,Closed evergreen needle-leaved forest (fc >0.4),3.24,WALKING
+80,Deciduous needle-leaved forest,3.24,WALKING
+81,Open deciduous needle-leaved forest (0.15< fc <0.4),3.24,WALKING
+82,Closed deciduous needle-leaved forest (fc >0.4),3.24,WALKING
+90,Mixed leaf forest (broadleaved and needle-leaved),3.24,WALKING
+100,Mosaic tree and shrub (>50%) / herbaceous cover (<50%),3.24,WALKING
+110,Mosaic herbaceous cover (>50%) / tree and shrub (<50%),4.86,WALKING
+120,Shrubland,3.6,WALKING
+121,Evergreen shrubland,3.6,WALKING
+122,Deciduous shrubland,3.6,WALKING
+130,Grassland,4.86,WALKING
+140,Lichens and mosses,3,WALKING
+150,Sparse vegetation (fc<0.15),3,WALKING
+151,Sparse tree (fc<0.15),3,WALKING
+152,Sparse shrubland (fc<0.15),3,WALKING
+153,Sparse herbaceous (fc<0.15),3,WALKING
+160,"Tree cover, flooded, fresh or brackish water",3.24,WALKING
+170,"Tree cover, flooded, saline water",3.24,WALKING
+180,Wetlands,2,WALKING
+190,Impervious,5,WALKING
+200,Bare areas,3,WALKING
+201,Consolidated bare areas,3,WALKING
+202,Unconsolidated bare areas,3,WALKING
+210,Water body,1,WALKING
+220,Permanent ice and snow,1.62,WALKING
+250,Filled value,0,WALKING
+1001,motorway,104.2865684,MOTORIZED
+1002,motorway_link,53.27102804,MOTORIZED
+2001,trunk,77.30842264,MOTORIZED
+2002,trunk_link,46.86859163,MOTORIZED
+3001,primary,64.57242814,MOTORIZED
+3002,primary_link,43.71042831,MOTORIZED
+4001,secondary,60.432418,MOTORIZED
+4002,secondary_link,43.08510638,MOTORIZED
+5001,tertiary,55.84700617,MOTORIZED
+5002,tertiary_link,40.56776557,MOTORIZED
+6001,unclassified,48.74964731,MOTORIZED
+6002,residential,47.48721524,MOTORIZED
+6003,service,36.2290033,MOTORIZED
+6004,track,37.71764253,MOTORIZED
+6005,footway,31.80851064,MOTORIZED
+6006,path,32.90215054,MOTORIZED

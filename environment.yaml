@@ -1,0 +1,20 @@
+name: schools
+channels:
+  - default
+  - conda-forge # for most other packages
+  - bioconda # for snakemake
+dependencies:
+  - python==3.11
+  - gdal>=3.8 # command-line tools for spatial data
+  - geopandas>=0.14.0 # geospatial dataframes
+  - pandas # dataframes
+  - osmium-tool # openstreetmap extracts
+  - ipykernel # jupyter python kernel
+  - jupyter # web-based interactive notebooks
+  - pip:
+      - zenodo_get>=1.5.1 # download from Zenodo
+      - cdsapi
+      - rioxarray
+      - seaborn
+      - --editable .  # bespoke library code
+  - snakemake # workflow management
