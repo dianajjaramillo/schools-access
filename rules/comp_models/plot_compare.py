@@ -8,6 +8,23 @@ import numpy as np
 from compare_cdfs import compare_model_cdfs 
 
 def main(iso3, path_90m, path_1km, out_fig, out_metrics,country_info_path="figures/country_data/country_info.xlsx"):
+    """
+    Plot and export CDF comparison outputs for two model result tables.
+
+    Inputs:
+        iso3: ISO3 code or `AFR`.
+        path_90m: CSV path for 90 m model distribution.
+        path_1km: CSV path for 1 km model distribution.
+        out_fig: Output path for the PNG figure.
+        out_metrics: Output path for comparison metrics JSON.
+        country_info_path: Optional lookup table for ISO3 display names.
+
+    Outputs:
+        None.
+
+    Side effects:
+        Writes a comparison figure and metrics JSON.
+    """
     # Load data
     df_90m = pd.read_csv(path_90m, index_col=0)
     df_1km = pd.read_csv(path_1km, index_col=0)

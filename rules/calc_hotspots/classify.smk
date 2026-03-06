@@ -1,5 +1,5 @@
 #
-# Classifies clusters for socioeconomic hotspot exporation
+# Classify socioeconomic hotspot clusters.
 #
 
 import rasterio
@@ -144,4 +144,3 @@ rule classify_hexagons:
             thresholds
         )
         classified_hexgrid.to_file(output.gpkg, driver="GPKG")
-

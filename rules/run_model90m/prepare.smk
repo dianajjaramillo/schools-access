@@ -1,5 +1,5 @@
 #
-# Generates datapackage necessary to run AccessMod
+# Generate input data packages required to run AccessMod.
 #
 
 with open("config/countries_list.txt") as f:
@@ -168,7 +168,7 @@ rule am_scenario:
         scenario_m="model_90m/inputs/{ISO3}/scenario_multimodal.csv",
         scenario_w="model_90m/inputs/{ISO3}/scenario_walkingonly.csv",
     run:
-        # Calcualte mean road driving speeds by class
+        # Calculate mean road driving speeds by class.
         roads_gdf = geopandas.read_file(input.shp)
         roads=pandas.DataFrame(roads_gdf)
         roads_filtered = roads[(roads["maxspeed"].notnull()) & (roads["maxspeed"].str.isnumeric())]

@@ -4,7 +4,13 @@ import numpy as np
 
 def load_distribution(df):
     """
-    Load traveltime-pop distribution and return sorted travel times and cumulative distribution.
+    Build a cumulative distribution from modelled travel-time data.
+
+    Inputs:
+        df: DataFrame containing `traveltime` and `pop` columns.
+
+    Outputs:
+        Tuple `(times, cdf)` sorted by travel time.
     """
     # sort by travel time
     df = df.sort_values("traveltime").reset_index(drop=True)
@@ -20,21 +26,33 @@ def load_distribution(df):
 
 def interpolate_cdf(times, cdf, grid):
     """
-    Interpolate CDF values to a common grid of travel times.
+    Interpolate CDF values on a shared travel-time grid.
+
+    Inputs:
+        times: Source travel-time values.
+        cdf: Source cumulative probabilities.
+        grid: Target grid for interpolation.
+
+    Outputs:
+        Interpolated CDF values on `grid`.
     """
     return np.interp(grid, times, cdf, left=0, right=1)
 
 
 def compare_model_cdfs(model_df_1, model_df_2, tmax=180):
     """
-    Compare CDFs of two models (e.g., 90m vs 1km) using A+, A-, Aabs metrics.
-    
-    Parameters:
-        model_df_1, model_df_2: DataFrames with 'traveltime' and 'pop' columns
-        tmax: maximum travel time (in minutes) to define common grid
+    Compare CDFs from two model outputs using area-based metrics.
 
-    Returns:
-        Dictionary of A+, A-, Aabs metrics (raw and normalized)
+    Inputs:
+        model_df_1: First model DataFrame with `traveltime` and `pop`.
+        model_df_2: Second model DataFrame with `traveltime` and `pop`.
+        tmax: Maximum travel-time bound (minutes) for integration.
+
+    Outputs:
+        Dictionary with raw and normalized `A+`, `A-`, and `Aabs` values.
+
+    Side effects:
+        None.
     """
     # load both model distributions
     t1, F1 = load_distribution(model_df_1)

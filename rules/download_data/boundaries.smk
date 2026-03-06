@@ -1,5 +1,5 @@
 #
-# Create admin boundaries, many different formats available 
+# Create country boundary and administrative zone inputs.
 #
 
 def boundary_bbox(wildcards):

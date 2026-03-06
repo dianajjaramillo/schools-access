@@ -20,10 +20,10 @@ rule schools_prep_jrc:
     output:
         gpkg="data/{ISO3}/schools_jrc__{ISO3}.gpkg",
     run:
-        # Read in global gile
+        # Read the global source file.
         df=geopandas.read_file(input.gpkg)
         
-        # Filter country    
+        # Filter to the requested country.
         df_iso=df[df["iso3code"]==wildcards.ISO3]
 
         if df_iso.empty:
@@ -37,6 +37,5 @@ rule schools_prep_jrc:
         df_iso = df_iso[columns]
 
         df_iso.to_file(output.gpkg, layer="points")
-
 
 

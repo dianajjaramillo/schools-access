@@ -1,5 +1,5 @@
 #
-# Clip DEM and LULC data from mistral/incoming_data folder
+# Clip DEM and land-cover rasters to country boundaries.
 #
 
 rule dem_clip:

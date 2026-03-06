@@ -1,5 +1,5 @@
 #
-# Download Worldpop Schoolage - Africa only
+# Download WorldPop school-age population (Africa).
 #
 rule pop_schoolage_download:
     output:

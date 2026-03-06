@@ -4,6 +4,20 @@ import json
 import sys
 
 def compute_exposure_metrics(diff_raster_path, pop_raster_path, output_path):
+    """
+    Compute population exposure metrics from a travel-time difference raster.
+
+    Inputs:
+        diff_raster_path: Path to raster of travel-time differences.
+        pop_raster_path: Path to aligned population raster.
+        output_path: Path to output JSON file.
+
+    Outputs:
+        None.
+
+    Side effects:
+        Writes metric JSON to `output_path`.
+    """
     with rasterio.open(diff_raster_path) as diff_src, rasterio.open(pop_raster_path) as pop_src:
         diff = diff_src.read(1, masked=True)
         pop = pop_src.read(1, masked=True)
@@ -30,6 +44,20 @@ def compute_exposure_metrics(diff_raster_path, pop_raster_path, output_path):
             json.dump(results, f, indent=2)
 
 def compute_exposure_metrics_v1(diff_raster_path, pop_raster_path, output_path):
+    """
+    Compute legacy exposure metrics retained for comparison and reproducibility.
+
+    Inputs:
+        diff_raster_path: Path to raster of travel-time differences.
+        pop_raster_path: Path to aligned population raster.
+        output_path: Path to output JSON file.
+
+    Outputs:
+        None.
+
+    Side effects:
+        Writes metric JSON to `output_path`.
+    """
     with rasterio.open(diff_raster_path) as diff_src, rasterio.open(pop_raster_path) as pop_src:
         diff = diff_src.read(1, masked=True)
         pop = pop_src.read(1, masked=True)

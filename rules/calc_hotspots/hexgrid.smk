@@ -1,5 +1,5 @@
 #
-# Creates a hexagonal grid for the country 
+# Create a hexagonal grid for each country extent.
 #
 
 import h3
@@ -31,4 +31,3 @@ rule generate_hexgrid:
             bounds = src.bounds
         hexgrid = generate_hexgrid(bounds, resolution=6)
         hexgrid.to_file(output.geojson, driver="GeoJSON")
-

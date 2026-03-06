@@ -54,7 +54,7 @@ rule schools_numbers:
         df.to_csv(input.df)
 
 
-        # export dummy txt file
+        # Export a per-country text summary file.
         txt = open(output.txt, "x")
         txt.write("# of schools in JRC: "+str(jrc_len)+"\n")
         txt.write("# of schools in Giga: "+str(giga_len)+"\n")
@@ -222,4 +222,3 @@ rule summary_cumulative:
         df_summary_cum = pandas.concat(df_summary_cum)
 
         df_summary_cum.to_csv(output.csv)
-

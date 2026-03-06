@@ -1,5 +1,5 @@
 #
-# 
+# Run comparison workflow using the Moner-Girona reference travel-time surface.
 #
 
 with open("config/countries_list.txt") as f:
@@ -49,4 +49,4 @@ rule clip_monergirona:
             
         # Clean up temp file
         rm temp__{wildcards.ISO3}.tif
-        """	
+        """

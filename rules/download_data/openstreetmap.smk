@@ -2,9 +2,10 @@
 # Download OpenStreetMap Planet, create country file and sector extracts
 #
 
-# Define osm date
-# OSM_DATE = "20240401"  # old date - first run
-OSM_DATE = "20250825"     # new date - second run
+# OSM snapshot date used by this workflow run.
+# Previous snapshot retained for provenance:
+# OSM_DATE = "20240401"
+OSM_DATE = "20250825"
 OSM_YEAR = OSM_DATE[:4]   # "2025"
 OSM_YMD  = OSM_DATE[2:]   # "250825"
 

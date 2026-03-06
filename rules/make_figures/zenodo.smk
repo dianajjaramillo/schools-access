@@ -1,5 +1,5 @@
 #
-# Makes a folder with every countries traveltime map, for zenodo 
+# Create a Zenodo-ready folder with country travel-time rasters.
 #
 rule zenodo_folder:
     input:
@@ -19,4 +19,3 @@ rule zenodo_all:
     input:
         expand("zenodo/v1/schools_traveltime_walking__{ISO3}.tif",
             ISO3=ISO3_CODES)
-

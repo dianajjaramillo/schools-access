@@ -1,5 +1,5 @@
 #
-# Population (ghs) is overlayed with accessibility analysis outputs 
+# Overlay population (GHS) with accessibility analysis outputs.
 #
 
 with open("config/countries_list.txt") as f:
@@ -249,4 +249,3 @@ rule metric_gadm:
                             on = group)
         stats_gdf = geopandas.GeoDataFrame(stats_df, geometry="geometry")
         stats_gdf.to_file(output.gpkg)
-

@@ -1,5 +1,5 @@
 #
-# Processed accesmod outputs into raster tif of traveltimes
+# Process AccessMod outputs into travel-time rasters.
 #
 
 with open("config/countries_list.txt") as f:

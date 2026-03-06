@@ -20,18 +20,23 @@ from shapely.ops import transform
 
 def download_from_CDS(dataset_name: str, variable: str, file_format: str, version: str, year: str, output_path: str) -> None:
     """
-    Download a resource from the Copernicus CDS API, given appropriate credentials.
+    Download one dataset resource from the Copernicus CDS API.
 
-    Requires COPERNICUS_CDS_URL and COPERNICUS_CDS_API_KEY to be in the environment.
-    For more details see: https://cds.climate.copernicus.eu/api-how-to
+    Uses `cdsapi.Client` with credentials read from environment variables.
 
-    Args:
-        dataset_name: Name of dataset to download
-        variable: Name of variable to request
-        file_format: Desired file format e.g. zip
-        version: Version of dataset
-        year: Year of dataset applicability
-        output_path: Where to save the downloaded file
+    Inputs:
+        dataset_name: CDS dataset identifier.
+        variable: Variable name requested from the dataset.
+        file_format: Output format requested by CDS (for example, `zip`).
+        version: Dataset version selector.
+        year: Year selector for the request.
+        output_path: Destination path for the downloaded file.
+
+    Outputs:
+        None.
+
+    Side effects:
+        Writes a downloaded file to `output_path`.
     """
 
     client = cdsapi.Client(
@@ -39,13 +44,12 @@ def download_from_CDS(dataset_name: str, variable: str, file_format: str, versio
         key=os.environ.get("COPERNICUS_CDS_API_KEY")
     )
 
-    # N.B. Files are covered by licences which need to be manually accepted, e.g.
+    # Some CDS files require manual acceptance of licence terms, for example:
     # https://cds.climate.copernicus.eu/cdsapp/#!/terms/satellite-land-cover
     # https://cds.climate.copernicus.eu/cdsapp/#!/terms/vito-proba-v
     #
-    # Ideally we could programmatically accept the necessary licence conditions
-    # the below code is an attempt at that, but fails with an HTTP 403, not
-    # logged in when trying to simulate a user acceptance 
+    # The example below documents an attempted programmatic acceptance approach.
+    # It is retained for reference but is not currently used.
     #
     #   API_URL = os.environ.get("COPERNICUS_CDS_URL")
     #   payloads = [
@@ -74,49 +78,21 @@ def download_from_CDS(dataset_name: str, variable: str, file_format: str, versio
 
 def weighted_percentile(a, q, weights=None, interpolation='step'):
     """
-    Compute the qth percentile of the data a, optionally weight can be provided.
-    Returns the qth percentile(s) of the array elements.
+    Compute weighted percentile value(s) for a one-dimensional array.
 
-    Methodology
-    -----------
-    If weights are not provided, we set all `a` of equal weight of 1. Then we
-    normalize the weight by equal factor so that their sum is 1. Then, in sorted
-    ascending order of `a`, we plot the values as a curve from 0 to 1 and lookup
-    the values corresponding to `q` from the curve.
+    Supports multiple interpolation styles used by this workflow.
 
-    Shape of the curve is determined by the parameter `interpolation`. If it is
-    'step', the curve is cadlag steps; if 'lower', we set the leftmost edge of
-    each step as the corresponding value in `a` and interpolate the adjacent
-    values except the last one, which we carry the horizontal step forward to
-    1.0; if 'higher', it is similar to the case of 'lower' but we set the value
-    at the rightmost edge of each step instead and the horizontal step is
-    preserved at the minimum value; if 'midpoint', we set the value at the
-    middle of each step and the half steps at the minimum and maximum is
-    preserved as horizontal.
+    Inputs:
+        a: Input values.
+        q: Percentile or percentiles in the 0-100 range.
+        weights: Optional non-negative weights matching `a`.
+        interpolation: One of `step`, `lower`, `higher`, or `midpoint`.
 
-    Parameters
-    ----------
-    a : array_like of float
-        Input array or object that can be converted to an array.
-    q : array_like of float
-        Percentile or sequence of percentiles to compute, which must be between
-        0 and 100 inclusive.
-    weights : array_like of float, optional
-        if provided, must be the same dimension as `a` and all elements are
-        non-negative. This is the weights to be used
-    interpolation : {'step', 'lower', 'higher', 'midpoint'}
+    Outputs:
+        A scalar percentile value for scalar `q`, otherwise a NumPy array.
 
-    Returns
-    -------
-    percentile : scalar or ndarray
-        If `q` is a single percentile and `axis=None`, then the result
-        is a scalar. If multiple percentiles are given, first axis of
-        the result corresponds to the percentiles. The other axes are
-        the axes that remain after the reduction of `a`. If the input
-        contains integers or floats smaller than ``float64``, the output
-        data-type is ``float64``. Otherwise, the output data-type is the
-        same as that of the input. If `out` is specified, that array is
-        returned instead.
+    Side effects:
+        None.
     """
     import numpy as np
     # sanitation check on a, q, weights
@@ -156,8 +132,7 @@ def weighted_percentile(a, q, weights=None, interpolation='step'):
         w = np.insert(np.insert(w, len(w), 1.0), 0, 0.0)
     else:
         raise NotImplementedError("Unknown interpolation method")
-    # linear search of weights by each element of q
-    # TODO we can do binary search instead
+    # Perform a linear search over cumulative weights for each percentile.
     output = []
     for percentile in ([q] if isinstance(q, (int, float)) else q):
         if percentile <= 0:
@@ -176,18 +151,40 @@ def weighted_percentile(a, q, weights=None, interpolation='step'):
                     break
     return output[0] if isinstance(q, (int, float)) else np.array(output)
 
-# Define the weighted average and weighted percentiles functions
 def weighted_avg(group):
+    """Compute weighted mean travel time for one grouped table.
+
+    Inputs:
+        group: DataFrame with `traveltime` and `pop` columns.
+
+    Outputs:
+        Weighted mean as a float.
+    """
     return fmean(group["traveltime"], weights=group["pop"])
 
 def weighted_percentiles(group, percentiles):
+    """Compute selected weighted percentile travel times for one group.
+
+    Inputs:
+        group: DataFrame with `traveltime` and `pop` columns.
+        percentiles: Iterable of percentile integers.
+
+    Outputs:
+        Dictionary keyed as `wgt_pXX`.
+    """
     return {f'wgt_p{p}': weighted_percentile(group["traveltime"], p, group["pop"]) for p in percentiles}
 
-# List of percentiles you want to calculate
-percentiles = [20, 80]  # Modify this list as needed
+percentiles = [20, 80]
 
-# Apply the functions to each group
 def group_stats(group):
+    """Create weighted summary statistics for grouped travel-time data.
+
+    Inputs:
+        group: DataFrame with `traveltime` and `pop` columns.
+
+    Outputs:
+        Pandas Series with weighted mean and selected weighted percentiles.
+    """
     result = {}
     result["wgt_avg"] = weighted_avg(group)
     result.update(weighted_percentiles(group, percentiles))
