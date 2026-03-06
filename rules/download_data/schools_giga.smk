@@ -18,7 +18,10 @@ rule schools_download_giga:
         load_dotenv()
         key = os.getenv("GIGA_API_KEY")
         
-        url = 'https://uni-ooi-giga-maps-service.azurewebsites.net/api/v1/schools_location/country/'+list({wildcards.ISO3})[0]
+        url = (
+            "https://uni-ooi-giga-maps-service.azurewebsites.net/api/v1/"
+            f"schools_location/country/{wildcards.ISO3}"
+        )
         headers = {'accept': 'application/json'}
         headers['Authorization'] =  'Bearer '+ key
 
@@ -27,8 +30,8 @@ rule schools_download_giga:
         print (r)
 
         def write_empty(path):
-            empty = gpd.GeoDataFrame(
-                pd.DataFrame({"geometry": []}),
+            empty = geopandas.GeoDataFrame(
+                pandas.DataFrame({"geometry": []}),
                 geometry="geometry",
                 crs="EPSG:4326"
             )
@@ -54,4 +57,3 @@ rule schools_download_giga:
                     geometry = geopandas.points_from_xy(schools_df.longitude, schools_df.latitude))
 
                 schools_gdf.to_file(output.gpkg)
-

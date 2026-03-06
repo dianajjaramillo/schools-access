@@ -8,8 +8,8 @@ rule pop_ghs_download:
     shell:
         """
         mkdir -p incoming_data/pop-ghs
-        cd incoming_data/pop=ghs
-        wget https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GLOBE_R2023A/GHS_POP_E2020_GLOBE_R2023A_4326_3ss/V1-0/GHS_POP_E2020_GLOBE_R2023A_4326_3ss_V1_0.zip"
+        cd incoming_data/pop-ghs
+        wget https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GLOBE_R2023A/GHS_POP_E2020_GLOBE_R2023A_4326_3ss/V1-0/GHS_POP_E2020_GLOBE_R2023A_4326_3ss_V1_0.zip
         unzip GHS_POP_E2020_GLOBE_R2023A_4326_3ss_V1_0.zip
         """
 

@@ -11,7 +11,8 @@ import shapely
 
 include: "rules/download_data/boundaries.smk"
 include: "rules/download_data/openstreetmap.smk"
-include: "rules/download_data/dem_lulc.smk"
+include: "rules/download_data/merit_dem.smk"
+include: "rules/download_data/copernicus_lulc.smk"
 include: "rules/download_data/pop_ghs.smk"
 include: "rules/download_data/pop_wp.smk"
 include: "rules/download_data/socio_econ.smk"

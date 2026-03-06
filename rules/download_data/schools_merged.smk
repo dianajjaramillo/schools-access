@@ -45,8 +45,8 @@ rule schools_merged:
         jrc="data/{ISO3}/schools_jrc__{ISO3}.gpkg",
         giga="data/{ISO3}/schools_giga__{ISO3}.gpkg",
     output:
-        nbuf="data/{ISO3}/schools_merged_nobuff_JG__{ISO3}.gpkg",
-        ybuf="data/{ISO3}/schools_merged_wbuff50_JG__{ISO3}.gpkg",
+        nbuf="data/{ISO3}/schools_merged_nobuff__{ISO3}.gpkg",
+        ybuf="data/{ISO3}/schools_merged_wbuff50__{ISO3}.gpkg",
     run:
         import geopandas
         import pandas 

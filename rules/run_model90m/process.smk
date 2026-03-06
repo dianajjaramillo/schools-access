@@ -54,7 +54,7 @@ rule am_reproject:
 rule am_byadmin:
     input:
         tif="model_90m/outputs/{VERSION}/{ISO3}/outputs/traveltime_4326__{ISO3}.tif",
-        gadm="data/{ISO3}/gadm__{ISO3}.gpkg",
+        gadm="data/{ISO3}/boundaries__{ISO3}.gpkg",
     output:
         gpkg="model_90m/outputs/{VERSION}/{ISO3}/outputs/traveltime_byadmin.gpkg",
     run:

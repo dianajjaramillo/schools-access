@@ -33,7 +33,7 @@ rule am_pop:
     input:
         tt="{MODEL}/outputs/{VERSION}/{ISO3}/outputs/traveltime_4326__{ISO3}.tif",
         pp="data/{ISO3}/pop_ghs__{ISO3}.tif",
-        # gadm_zones="data/{ISO3}/gadm__{ISO3}.gpkg",
+        # gadm_zones="data/{ISO3}/boundaries__{ISO3}.gpkg",
     output:
         csv_nat="{MODEL}/outputs/{VERSION}/{ISO3}/analysis/ttpop_nat__{ISO3}.csv",
         # csv_sub_gadm="{MODEL}/outputs/{VERSION}/{ISO3}/analysis/ttpop_gadm__{ISO3}.csv",
@@ -159,7 +159,7 @@ rule am_pop_gadm:
     input:
         tt="{MODEL}/outputs/{VERSION}/{ISO3}/outputs/traveltime_4326__{ISO3}.tif",
         pp="data/{ISO3}/pop_ghs__{ISO3}.tif",
-        gadm_zones="data/{ISO3}/gadm__{ISO3}.gpkg",
+        gadm_zones="data/{ISO3}/boundaries__{ISO3}.gpkg",
     output:
         csv_sub_gadm="{MODEL}/outputs/{VERSION}/{ISO3}/analysis/ttpop_gadm__{ISO3}.csv",
     run:
@@ -223,7 +223,7 @@ rule am_pop_gadm:
 rule metric_gadm:
     input:
         csv="{MODEL}/outputs/{VERSION}/{ISO3}/analysis/ttpop_gadm__{ISO3}.csv",
-        gadm_zones="data/{ISO3}/gadm__{ISO3}.gpkg",
+        gadm_zones="data/{ISO3}/boundaries__{ISO3}.gpkg",
 
     output:
         gpkg="{MODEL}/outputs/{VERSION}/{ISO3}/analysis/stats_gadm__{ISO3}.gpkg",
