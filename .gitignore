@@ -1,0 +1,39 @@
+# Snakemake
+.snakemake
+
+# Data
+data
+incoming_data
+zenodo
+model_90m
+model_1km
+model_comp
+figures
+analysis
+
+# Hidden files
+*.qgz
+.RData
+.RHistory
+.Rapp.history
+.smbdelete*
+
+# Working folders
+archive
+submit_job
+dags
+
+# API tokens
+.env
+
+# Python
+__pycache__
+*.py[c,i]
+*.egg-info
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Mac 
+._*
+.DS_Store
