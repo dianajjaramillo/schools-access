@@ -40,7 +40,7 @@ rule am_boundaries:
 
 rule am_zones:
     input:
-        gpkg="data/{ISO3}/gadm__{ISO3}.gpkg",
+        gpkg="data/{ISO3}/boundaries__{ISO3}.gpkg",
     output:
         shp="model_90m/inputs/{ISO3}/gadm3__{ISO3}.shp",
     run:
@@ -144,9 +144,11 @@ def categorize_class(road_class):
     elif road_class == 'path':
         return 6006
 
+OSM_DATE = "20250825"
+
 rule am_roads:
     input:
-        gpkg="data/{ISO3}/openstreetmap/openstreetmap_roads-all__{ISO3}.gpkg",
+        gpkg=f"data/{{ISO3}}/osm_{OSM_DATE}/openstreetmap_roads__{{ISO3}}.gpkg",
     output:
         shp="model_90m/inputs/{ISO3}/roads__{ISO3}.shp",
     run:

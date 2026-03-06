@@ -17,8 +17,6 @@ rule schools_numbers:
         osm = "data/{ISO3}/schools_osm__{ISO3}.gpkg",
         # nbuf="data/{ISO3}/schools_merged_nobuff__{ISO3}.gpkg",
         # ybuf="data/{ISO3}/schools_merged_wbuff50__{ISO3}.gpkg",
-        # nbuf_JG="data/{ISO3}/schools_merged_nobuff_JG__{ISO3}.gpkg",
-        # ybuf_JG="data/{ISO3}/schools_merged_wbuff50_JG__{ISO3}.gpkg",
         df = "figures/tables/countries_schools.csv",
     output:
         txt = "data/{ISO3}/schools_facilities.txt",
@@ -31,16 +29,12 @@ rule schools_numbers:
         osm = geopandas.read_file(input.osm)
         # nbuf = geopandas.read_file(input.nbuf)
         # ybuf = geopandas.read_file(input.ybuf)
-        # nbuf_JG = geopandas.read_file(input.nbuf_JG)
-        # ybuf_JG = geopandas.read_file(input.ybuf_JG)
 
         jrc_len = len(jrc)
         giga_len = len(giga)
         osm_len = len(osm)
         # nbuf_len = len(nbuf)
         # ybuf_len = len(ybuf)
-        # nbuf_JG_len = len(nbuf_JG)
-        # ybuf_JG_len = len(ybuf_JG)
 
         # update main file
         df = pandas.read_csv(input.df, index_col = 0)
@@ -49,8 +43,6 @@ rule schools_numbers:
         df.loc[df['ISO3']==list({wildcards.ISO3})[0],'Schools (OSM)'] = osm_len
         # df.loc[df['ISO3']==list({wildcards.ISO3})[0],'Schools (Merged_nobuff)'] = nbuf_len
         # df.loc[df['ISO3']==list({wildcards.ISO3})[0],'Schools (Merged_wbuff50)'] = ybuf_len
-        # df.loc[df['ISO3']==list({wildcards.ISO3})[0],'Schools (Merged_nobuff_JG)'] = nbuf_JG_len
-        # df.loc[df['ISO3']==list({wildcards.ISO3})[0],'Schools (Merged_wbuff50_JG)'] = ybuf_JG_len
         df.to_csv(input.df)
 
 
@@ -61,8 +53,6 @@ rule schools_numbers:
         txt.write("# of schools in OSM: "+str(osm_len)+"\n")
         # txt.write("# of schools in Merged nobuff: "+str(nbuf_len))
         # txt.write("# of schools in Merged wbuff50: "+str(ybuf_len))
-        # txt.write("# of schools in Merged nobuff: "+str(nbuf_JG_len))
-        # txt.write("# of schools in Merged wbuff50: "+str(ybuf_JG_len))
 
         txt.close
 

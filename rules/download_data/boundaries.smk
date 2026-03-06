@@ -18,23 +18,13 @@ rule geojson_boundary:
         with open(output.json, "w") as fh:
             fh.write(json)
 
-rule boundaries:
-    input:
-        gpkg="bundled_data/ne_10m_admin_0_map_units_custom.gpkg",
-    output:
-        gpkg="data/{ISO3}/boundaries__{ISO3}.gpkg",
-    run:
-        boundaries=geopandas.read_file(input.gpkg)
-        selected=boundaries[boundaries["CODE_A3"]==wildcards.ISO3]
-        selected.to_file(output.gpkg)
-
 rule zones_gadm:
     output:
-        gpkg="data/{ISO3}/gadm__{ISO3}.gpkg",
+        gpkg="data/{ISO3}/boundaries__{ISO3}.gpkg",
     shell:
         """
         cd data/{wildcards.ISO3}
-        wget https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_{wildcards.ISO3}.gpkg --output-document=gadm__{wildcards.ISO3}.gpkg
+        wget https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_{wildcards.ISO3}.gpkg --output-document=boundaries__{wildcards.ISO3}.gpkg
         """
 
 rule zones_shdi:

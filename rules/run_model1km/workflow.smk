@@ -59,7 +59,7 @@ rule csv_schools:
     input:
         pc="data/{ISO3}/schools_{SOURCE}__{ISO3}.gpkg",
     output:
-        csv="data/{ISO3}/schools_{SOURCE}__{ISO}.csv",
+        csv="data/{ISO3}/schools_{SOURCE}__{ISO3}.csv",
     wildcard_constraints:
         SOURCE="jrc|giga|osm|merged",
     run:
